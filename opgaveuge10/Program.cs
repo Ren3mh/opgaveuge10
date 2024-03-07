@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            //Opgave 1.1
             //Console.WriteLine("Hello, World!");
             //int Sami = 27;
             //int Peter = 26;
@@ -25,6 +26,8 @@
 
             //Console.WriteLine("Gennemsnitter er: " + gennemsnit);
 
+            
+            //Opgave 1.2
             int Sami = 27;
             int Peter = 26;
             int Robin = 24;
@@ -51,6 +54,21 @@
             
             Console.WriteLine("Gennemsnittet er: " + (double) ageSum / ages.Length);
 
+
+
+            //Opgave 1.3
+            int ageseeking = 27;
+            string message = "Ingen med denne alder :-(";
+
+            foreach (int age in ages)
+            {
+                if (age == ageseeking)
+                {
+                    message = "Der er en med denne alder :-D";
+                    break;
+                }
+            }
+            Console.WriteLine(message);
 
             Console.ReadLine();
 
