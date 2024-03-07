@@ -26,7 +26,7 @@
 
             //Console.WriteLine("Gennemsnitter er: " + gennemsnit);
 
-            
+            /*
             //Opgave 1.2
             int Sami = 27;
             int Peter = 26;
@@ -69,6 +69,30 @@
                 }
             }
             Console.WriteLine(message);
+            */
+
+            //Opgave 1.4
+            Console.WriteLine("Hvor mange personer er i: ");
+            int antalpers = 0;
+
+            do
+            {
+                try
+                {
+                    antalpers = int.Parse(Console.ReadLine());
+                    if ( antalpers != 0 )
+                    {
+                        break;
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine("Skriv et tal!");
+                    Console.WriteLine(ex);
+                }
+            } while (true);
+
+                Console.WriteLine("Antal personer: " + antalpers);
 
             Console.ReadLine();
 
