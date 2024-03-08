@@ -17,8 +17,8 @@ namespace opgaveuge10
         public Menu(string title)
         {
             Title = title;
-            MenuItems =  new MenuItem[10];
-            ItemCount = 0;
+            menuItems =  new MenuItem[10];
+            itemCount = 0;
         }
 
         public class MenuItem
@@ -44,8 +44,22 @@ namespace opgaveuge10
             for (int item = 0; item < itemCount; item++)
                 Console.WriteLine($"{item+1}. {menuItems[item].Title}");
 
-            Console.WriteLine("\n\n(Tryk menupunkt eller 0 for at afslutte)");
+            Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte) ");
+
         }
 
+        public int SelectMenuItem()
+        {
+            int selectedMenuItem;
+
+            while (true) 
+            {
+                
+                if (int.TryParse(Console.ReadLine(), out selectedMenuItem) && selectedMenuItem <= itemCount && selectedMenuItem >= 0)
+                    return selectedMenuItem;
+
+                Console.Write("Dit valg af menupunkt eksisterer ikke. Prøv igen: ");
+            }
+        }
     }
 }
