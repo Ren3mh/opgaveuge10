@@ -12,7 +12,7 @@ namespace opgaveuge10
     internal class Menu
     {
         public string Title;
-        MenuItem[] menuItems = new MenuItem[3]; // maksimum 100 menumpunkter
+        MenuItem[] menuItems = new MenuItem[100]; // maksimum 100 menumpunkter
         int itemCount;
 
         // Menu constructor
@@ -32,6 +32,7 @@ namespace opgaveuge10
                 Title = title;
                 PrintThis = printThis;
             }
+
         }
 
         public void AddMenuItem(string menuTitle, string menuPrint)
@@ -51,7 +52,7 @@ namespace opgaveuge10
 
         }
 
-        public void SelectMenuItem()
+        public bool SelectMenuItem()
         {
             int selectedMenuItem;
 
@@ -59,14 +60,30 @@ namespace opgaveuge10
             {
 
                 if (int.TryParse(Console.ReadLine(), out selectedMenuItem) && selectedMenuItem <= itemCount && selectedMenuItem >= 0)
-                    break;
+                    
+                    if (selectedMenuItem == 0)
+                        return true;
 
-                Console.Write("Dit valg af menupunkt eksisterer ikke. Prøv igen: ");
+                    else
+                        break;
+                else
+                    Console.Write("Dit valg af menupunkt eksisterer ikke. Prøv igen: ");
             }
 
-            string message = menuItems[selectedMenuItem -1].PrintThis;
+            PrintMenuItem(selectedMenuItem);
 
-            Console.WriteLine(message);
+            return false;
+
+            void PrintMenuItem(int menuItem)
+            {
+                string message = menuItems[menuItem - 1].PrintThis;
+
+                Console.Clear();
+                Console.WriteLine(message);
+                Console.Write("<enter> for at gå tilbage");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
     }
 }

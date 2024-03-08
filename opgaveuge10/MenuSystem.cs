@@ -7,7 +7,7 @@ namespace opgaveuge10
         static void Main(string[] args)
         {
 
-            //Opgave 3.5
+            //Opgave 3.6
 
             Menu menu = new Menu(title: "Min Fantastiske Menu");
             
@@ -17,13 +17,14 @@ namespace opgaveuge10
             for (int i = 0; i < menuItems.GetLength(0); i++)
                 menu.AddMenuItem(menuItems[i, 0], menuItems[i, 1]);
 
-            menu.Show();
+            while (true)
+            {
+                menu.Show();
 
-            menu.SelectMenuItem();
+                if (menu.SelectMenuItem())
+                    break;
 
-            Console.ReadLine();
-
-
+            }
         }
     }
 }
