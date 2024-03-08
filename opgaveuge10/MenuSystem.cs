@@ -7,19 +7,19 @@ namespace opgaveuge10
         static void Main(string[] args)
         {
 
-            //Opgave 3.4
+            //Opgave 3.5
 
             Menu menu = new Menu(title: "Min Fantastiske Menu");
             
-            string[] menuTitles = { "Gør dit", "Gør dat", "Gør noget", "Få svaret på livet" };
+            string[,] menuItems = { { "Gør dit", "Gør dit" }, { "Gør dat", "Gør dat" }, { "Gør noget", "Gør noget" }, { "Få svaret på livet", "42" } };
+            
 
-            foreach (string menuTitle in menuTitles)
-                menu.AddMenuItem(menuTitle);
+            for (int i = 0; i < menuItems.GetLength(0); i++)
+                menu.AddMenuItem(menuItems[i, 0], menuItems[i, 1]);
 
             menu.Show();
 
-            int menuItem = menu.SelectMenuItem();
-            Console.WriteLine("Valgt menu: " + menuItem);
+            menu.SelectMenuItem();
 
             Console.ReadLine();
 

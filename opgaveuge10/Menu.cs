@@ -7,33 +7,36 @@ using System.Threading.Tasks;
 
 namespace opgaveuge10
 {
+    
+
     internal class Menu
     {
         public string Title;
-        MenuItem[] menuItems;
+        MenuItem[] menuItems = new MenuItem[3]; // maksimum 100 menumpunkter
         int itemCount;
 
         // Menu constructor
         public Menu(string title)
         {
             Title = title;
-            menuItems =  new MenuItem[10];
             itemCount = 0;
         }
 
         public class MenuItem
         {
             public string Title;
+            public string PrintThis;
 
-            public MenuItem(string title)
+            public MenuItem(string title, string printThis)
             {
                 Title = title;
+                PrintThis = printThis;
             }
         }
 
-        public void AddMenuItem(string menuTitle)
+        public void AddMenuItem(string menuTitle, string menuPrint)
         {
-            menuItems[itemCount] = new MenuItem(menuTitle);
+            menuItems[itemCount] = new MenuItem(menuTitle, menuPrint);
             itemCount++;
         }
 
@@ -48,18 +51,22 @@ namespace opgaveuge10
 
         }
 
-        public int SelectMenuItem()
+        public void SelectMenuItem()
         {
             int selectedMenuItem;
 
             while (true) 
             {
-                
+
                 if (int.TryParse(Console.ReadLine(), out selectedMenuItem) && selectedMenuItem <= itemCount && selectedMenuItem >= 0)
-                    return selectedMenuItem;
+                    break;
 
                 Console.Write("Dit valg af menupunkt eksisterer ikke. Prøv igen: ");
             }
+
+            string message = menuItems[selectedMenuItem -1].PrintThis;
+
+            Console.WriteLine(message);
         }
     }
 }
