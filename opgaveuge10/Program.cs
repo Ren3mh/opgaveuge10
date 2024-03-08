@@ -7,10 +7,11 @@ namespace opgaveuge10
         static void Main(string[] args)
         {
 
-            //Opgave 1.4
+            //Opgave 1.4.2
 
             int[] AskForAges()
             {
+
                 int persons = AmoutOfPersones();
                 int[] ages = new int[persons];
 
@@ -18,14 +19,18 @@ namespace opgaveuge10
                 {
                     while (true)
                     {
-                        Console.WriteLine($"Skriv {person+1}. persons alder: ");
-                        try
+                        Console.Write($"Skriv {person+1}. persons alder: ");
+
+                        int age;
+
+                        if (int.TryParse(Console.ReadLine(), out age) && age > -1)
                         {
-                            ages[person] = int.Parse(Console.ReadLine());
+                            ages[person] = age;
                             break;
                         }
-                        catch (FormatException)
-                        { Console.WriteLine("Du skal skrive et heltal."); }
+
+                        else
+                            Console.WriteLine("Svar med et positivt heltal.");
                     }
                 }
 
@@ -33,28 +38,17 @@ namespace opgaveuge10
 
                 int AmoutOfPersones()
                 {
+                    int xpersons;
 
-                    int antalpers;
-
-                    while (true)
+                    while (true) 
                     {
                         Console.Write("Hvor mange personer er i? ");
 
-                        try
-                        {
-                            antalpers = int.Parse(Console.ReadLine());
+                        if (int.TryParse(Console.ReadLine(), out xpersons) && xpersons >= 0)
+                            return xpersons;
 
-                            if (antalpers > 0)
-                                return antalpers;
-
-                            else
-                                Console.WriteLine("Du må ikke skrive 0");
-
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Skriv et tal!");
-                        }
+                        else
+                            Console.WriteLine("Du skal svare med et positivt heltal");
                     }
                 }
             }
