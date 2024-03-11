@@ -12,7 +12,7 @@ namespace opgaveuge10
     internal class Menu
     {
         public string Title;
-        MenuItem[] menuItems = new MenuItem[100]; // maksimum 100 menumpunkter
+        SubMenuItem[] subMenuItems = new SubMenuItem[100]; // maksimum 100 menumpunkter
         int itemCount;
 
         // Menu constructor
@@ -22,22 +22,29 @@ namespace opgaveuge10
             itemCount = 0;
         }
 
-        public class MenuItem
+        public class SubMenuItem
         {
             public string Title;
-            public string PrintThis;
+            SubMenuItem[] subMenuItems = new SubMenuItem[100];
+            int itemCount;
 
-            public MenuItem(string title, string printThis)
+            public SubMenuItem(string title)
             {
                 Title = title;
-                PrintThis = printThis;
+                itemCount = 0;
+            }
+
+            public void AddSubMenuItem(string subMenuTitle)
+            {
+                subMenuItems[itemCount] = new SubMenuItem(subMenuTitle);
+                itemCount++;
             }
 
         }
 
-        public void AddMenuItem(string menuTitle, string menuPrint)
+        public void AddMenuItem(string menuTitle)
         {
-            menuItems[itemCount] = new MenuItem(menuTitle, menuPrint);
+            subMenuItems[itemCount] = new SubMenuItem(menuTitle);
             itemCount++;
         }
 
@@ -46,43 +53,23 @@ namespace opgaveuge10
             Console.WriteLine(Title+"\n\n");
 
             for (int item = 0; item < itemCount; item++)
-                Console.WriteLine($"{item+1}. {menuItems[item].Title}");
+                Console.WriteLine($"{item+1}. {subMenuItems[item].Title}");
 
             Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte) ");
 
         }
 
-        public bool SelectMenuItem()
+        public int SelectMenuItem()
         {
             int selectedMenuItem;
 
             while (true) 
             {
-
                 if (int.TryParse(Console.ReadLine(), out selectedMenuItem) && selectedMenuItem <= itemCount && selectedMenuItem >= 0)
-                    
-                    if (selectedMenuItem == 0)
-                        return true;
+                    return selectedMenuItem;
 
-                    else
-                        break;
                 else
                     Console.Write("Dit valg af menupunkt eksisterer ikke. Prøv igen: ");
-            }
-
-            PrintMenuItem(selectedMenuItem);
-
-            return false;
-
-            void PrintMenuItem(int menuItem)
-            {
-                string message = menuItems[menuItem - 1].PrintThis;
-
-                Console.Clear();
-                Console.WriteLine(message);
-                Console.Write("<enter> for at gå tilbage");
-                Console.ReadKey();
-                Console.Clear();
             }
         }
     }

@@ -10,20 +10,28 @@ namespace opgaveuge10
             //Opgave 3.6
 
             Menu menu = new Menu(title: "Min Fantastiske Menu");
-            
-            string[,] menuItems = { { "Gør dit", "Gør dit" }, { "Gør dat", "Gør dat" }, { "Gør noget", "Gør noget" }, { "Få svaret på livet", "42" } };
-            
 
-            for (int i = 0; i < menuItems.GetLength(0); i++)
-                menu.AddMenuItem(menuItems[i, 0], menuItems[i, 1]);
+            string[] menuItems = { "Gør dit", "Gør dat", "Gør noget" };
+
+            // submenu 1
+            string[] subMenuItems1 = { "Menupunkt 1.1", "Menupunkt 1.2", "Menupunkt 1.3" };
+            string[] subMenuItem11 = { "Menupunkt 1.1.1", "Menupunkt 1.1.2", "Menupunkt 1.1.3" };
+            string[] subMenuItem12 = { "Menupunkt 1.2.1", "Menupunkt 1.2.2", "Menupunkt 1.2.3" };
+
+            //// submenu 2
+            string[] subMenuItems2 = { "Menupunkt 2.1", "Menupunkt 2.2", "Menupunkt 2.3" };
+            string[] subMenuItem21 = { "Menupunkt 2.1.1", "Menupunkt 2.1.2", "Menupunkt 2.1.3" };
+            string[] subMenuItem22 = { "Menupunkt 2.2.1", "Menupunkt 2.2.2", "Menupunkt 2.2.3" };
+
+            for (int menuItem = 0; menuItem < menuItems.GetLength(0); menuItem++)
+                menu.AddMenuItem(menuItems[menuItem]);
 
             while (true)
             {
                 menu.Show();
 
-                if (menu.SelectMenuItem())
+                if (menu.SelectMenuItem() == 0)
                     break;
-
             }
         }
     }
